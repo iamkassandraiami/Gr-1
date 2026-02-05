@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Local AI Agent – Build Your Empire | $5K Intro (1 Week Only)</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%); color:#fff; line-height:1.6; overflow-x:hidden; }
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+        header { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.9); backdrop-filter:blur(10px); z-index:100; padding:1rem 0; }
+        nav { display:flex; justify-content:space-between; align-items:center; }
+        .logo { font-size:1.5rem; font-weight:800; background:linear-gradient(45deg,#00ff88,#00bfff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .cta-header { background:linear-gradient(45deg,#ff6b6b,#feca57); color:#000; padding:0.5rem 1.5rem; border-radius:50px; font-weight:700; text-decoration:none; transition:all 0.3s; }
+        .cta-header:hover { transform:scale(1.05); box-shadow:0 10px 30px rgba(255,107,107,0.5); }
+        .hero { padding:120px 0 80px; text-align:center; background:radial-gradient(circle at center,#00ff88 0%,transparent 70%); }
+        .hero h1 { font-size:clamp(2.5rem,8vw,5rem); font-weight:800; margin-bottom:1rem; background:linear-gradient(45deg,#fff,#00ff88); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero p { font-size:1.3rem; max-width:600px; margin:0 auto 2rem; opacity:0.9; }
+        .price-badge { display:inline-block; background:linear-gradient(45deg,#00ff88,#00bfff); color:#000; padding:1rem 2rem; border-radius:50px; font-size:1.5rem; font-weight:700; margin:1rem 0; box-shadow:0 20px 40px rgba(0,255,136,0.3); }
+        .countdown { background:#1a1a2e; padding:1.5rem; border-radius:20px; margin:2rem auto; max-width:400px; font-size:1.2rem; font-weight:600; }
+        .features { padding:80px 0; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:4rem; }
+        .card { background:rgba(255,255,255,0.05); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:2rem; text-align:center; transition:all 0.3s; }
+        .card:hover { transform:translateY(-10px); border-color:#00ff88; box-shadow:0 30px 60px rgba(0,255,136,0.2); }
+        .card h3 { font-size:1.5rem; margin-bottom:1rem; color:#00ff88; }
+        .pricing { padding:80px 0; text-align:center; }
+        .price-main { font-size:4rem; font-weight:800; color:#00ff88; margin:1rem 0; }
+        .price-intro { font-size:2rem; color:#feca57; margin-bottom:2rem; }
+        .buy-btn { background:linear-gradient(45deg,#00ff88,#00bfff); color:#000; padding:1.5rem 3rem; border-radius:50px; font-size:1.3rem; font-weight:700; text-decoration:none; display:inline-block; margin:1rem; transition:all 0.3s; box-shadow:0 20px 40px rgba(0,255,136,0.4); }
+        .buy-btn:hover { transform:scale(1.05); box-shadow:0 30px 60px rgba(0,255,136,0.6); }
+        .referral { background:linear-gradient(90deg,rgba(0,255,136,0.1),rgba(0,191,255,0.1)); padding:80px 0; text-align:center; }
+        .paths { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:4rem; max-width:800px; margin:0 auto; }
+        .path { text-align:center; }
+        .path.green { border:3px solid #00ff88; } .path.hammer { border:3px solid #feca57; }
+        .path h3 { color:#00ff88; margin-bottom:1rem; }
+        .faq { padding:80px 0; }
+        .faq-item { background:rgba(255,255,255,0.05); margin-bottom:1rem; padding:1.5rem; border-radius:15px; cursor:pointer; transition:all 0.3s; }
+        .faq-item:hover { background:rgba(0,255,136,0.1); }
+        .faq-answer { display:none; margin-top:1rem; opacity:0.8; }
+        footer { padding:40px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.1); }
+        @media (max-width:768px) { .paths { grid-template-columns:1fr; gap:2rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">AI Empire Agent</div>
+            <a href="#pricing" class="cta-header">Get Yours Now – $5K Intro</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Your Custom Local AI Agent – Built on YOUR Data & Logic</h1>
+            <p>Integrates with your APIs, systems, platforms. Advanced memory + reasoning that learns from 1-5 star ratings. Saves bank over time. No cloud fees, fully local/private.</p>
+            <div class="price-badge">Intro Launch: $5,000 (Reg $7,500) – 1 Week Only</div>
+            <div id="countdown" class="countdown">Intro Ends In: <span id="timer"></span></div>
+            <a href="#pricing" class="buy-btn">Secure Your Spot – Limited Slots</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align:center; font-size:3rem; margin-bottom:2rem; color:#fff;">What's Included – Production-Ready Power</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🧠 Advanced Memory & Reasoning</h3>
+                    <p>Cutting-edge logic customized to your use case. Thinks like you, evolves fast.</p>
+                </div>
+                <div class="card">
+                    <h3>⭐ Live Training System</h3>
+                    <p>Rate interactions 1-5 stars (1-click). No explanations – learns & perfects itself instantly.</p>
+                </div>
+                <div class="card">
+                    <h3>🔗 Full Integrations</h3>
+                    <p>Your tools, APIs, platforms connected. Built on your data or general specs.</p>
+                </div>
+                <div class="card">
+                    <h3>🎭 3x Personality Layers</h3>
+                    <p>Baked-in traits matching your vibe/requests. Grows into your perfect fit.</p>
+                </div>
+                <div class="card">
+                    <h3>📁 File/Asset System</h3>
+                    <p>Handles your files/data securely. Local-first, scales with you.</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Two Delivery Paths</h3>
+                    <p>Easy peasy setup (we handle) or hands-on tweak (for coders). No refunds – pure value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="paths" id="paths">
+        <div class="container">
+            <div class="path green">
+                <h3>🟢 Easy Setup</h3>
+                <p>We build & install. Refine privately post-delivery. Zero hassle.</p>
+            </div>
+            <div class="path hammer">
+                <h3>🔧 Hands-On</h3>
+                <p>Full files/assets for coders. Tweak on your terms.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 style="font-size:3rem; margin-bottom:1rem;">Investment: Empire-Level ROI</h2>
+            <div class="price-intro">FIRST WEEK ONLY: <span style="color:#00ff88;">$5,000</span> (then $7,500)</div>
+            <div class="price-main">$5,000</div>
+            <p style="max-width:600px; margin:0 auto 2rem; opacity:0.9;">Delivered 7-14 days post-payment. Custom to your specs.</p>
+            <!-- Replace pk_live_... with your Stripe key/product ID -->
+            <form action="/charge" method="post">
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_..." data-amount="500000" data-name="Custom AI Agent" data-description="$5K Intro – Local AI Powerhouse" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="usd">
+                </script>
+            </form>
+            <p style="margin-top:2rem; opacity:0.7;">Or DM for invoice/crypto. Slots filling fast.</p>
+        </div>
+    </section>
+
+    <section class="referral">
+        <div class="container">
+            <h2 style="font-size:2.5rem; margin-bottom:1rem;">💰 Referral Program – Easy Cash</h2>
+            <p style="font-size:1.3rem; max-width:700px; margin:0 auto 2rem;">Refer a buyer: $500 off YOUR agent OR $250 cash/digital (paid 2-4 weeks post-delivery). Unlimited. Share your link post-purchase.</p>
+            <a href="#pricing" class="buy-btn">Start Earning – Buy Now</a>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 style="text-align:center; font-size:2.5rem; margin-bottom:3rem;">FAQ</h2>
+            <div class="faq-item" onclick="toggle(this)">
+                <strong>How fast delivery?</strong>
+                <div class="faq-answer">7-14 days after specs/payment. Rush available.</div>
+            </div>
+            <div class="faq-item" onclick="toggle(this)">
+                <strong>Local only? No cloud?</strong>
+                <div class="faq-answer">100% local/private. Runs on your machine. No subs.</div>
+            </div>
+            <div class="faq-item" onclick="toggle(this)">
+                <strong>Refunds?</strong>
+                <div class="faq-answer">No refunds – custom high-value asset. But lifetime support tweaks.</div>
+            </div>
+            <div class="faq-item" onclick="toggle(this)">
+                <strong>What do I provide?</strong>
+                <div class="faq-answer">Your data/specs/use case via form/call. We build rest.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 AI Empire Agent. All rights reserved. <a href="#faq" style="color:#00ff88;">Privacy</a> | <a href="#faq" style="color:#00ff88;">Terms</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown (set end date: e.g. new Date('2023-10-15'))
+        const end = new Date('2023-10-15T23:59:59').getTime();
+        const timer = document.getElementById('timer');
+        const tick = () => {
+            const now = new Date().getTime();
+            const diff = end - now;
+            const h = Math.floor(diff / (1000*60*60));
+            const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+            timer.textContent = `${h}h ${m}m`;
+            if (diff > 0) setTimeout(tick, 60000);
+        }; tick();
+
+        function toggle(el) { el.querySelector('.faq-answer').style.display = el.querySelector('.faq-answer').style.display === 'block' ? 'none' : 'block'; }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => { e.preventDefault(); document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>
