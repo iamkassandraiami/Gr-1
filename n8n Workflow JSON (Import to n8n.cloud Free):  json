@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {"name":"Hourly Factory","type":"n8n-nodes-base.cron","position":[240,300],"parameters":{"rule":{"interval":["everyHour"]}}},
+    {"name":"Fresh Email/Phone/Proxy","type":"n8n-nodes-base.httpRequest","position":[460,300],"parameters":{"url":"https://api.tempmail.lol/generate","url2":"https://sms-activate.org/stubs/handler_api.php?api_key=YOUR_SMS_KEY&action=getNumber&service=tx&country=0"}},
+    {"name":"Puppeteer Clone","type":"n8n-nodes-base.code","position":[680,300],"parameters":{"jsCode":"const puppeteer = require('puppeteer-extra-plugin-stealth')(); const browser = await puppeteer.launch({headless:false, args:['--proxy-server={{$json.proxy}}']}); const page = await browser.newPage(); await page.goto('twitter.com/signup'); // Human delays: await page.waitForTimeout(2000 + Math.random()*5000); await page.type('#name', 'AIEmpire' + Math.floor(Math.random()*1000)); await page.type('#email', '{{$json.email}}'); // Fill pass/bio/PFP from your template, verify phone via SMS API poll, follow 20 AI accts. await browser.close(); return {acct_id: 'new_id'};"}},
+    {"name":"Link to Publer","type":"n8n-nodes-base.httpRequest","position":[900,300],"parameters":{"url":"https://publer.com/api/v1/accounts","body":{"credentials":{{$json.acct_id}},"schedule_posts":true}}}
+  ],
+  "connections": {"Hourly Factory":{"main":[{"node":"Fresh Email/Phone/Proxy"}]},"Fresh Email/Phone/Proxy":{"main":[{"node":"Puppeteer Clone"}]},"Puppeteer Clone":{"main":[{"node":"Link to Publer"}]}}
+}
