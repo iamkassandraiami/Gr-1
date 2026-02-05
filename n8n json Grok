@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {"name":"Cron Trigger","type":"n8n-nodes-base.cron","position":[240,300],"parameters":{"rule":{"interval":["everyMinute"]}}},
+    {"name":"Groq Trend Gen","type":"n8n-nodes-base.httpRequest","position":[460,300],"parameters":{"url":"https://api.groq.com/openai/v1/chat/completions","method":"POST","headers":{"Authorization":"Bearer YOUR_GROQ_KEY"},"body":{"model":"llama3-70b-8192","messages":[{"role":"user","content":"Scrape latest AI trends from X/Reddit. Generate 10 personalized posts for Custom Local AI Agent $5k intro [SITE_URL]. Hooks: 'Saves $100k/yr', FOMO timer, referral $250. Vary A/B: Thread/Reel/Image. Output JSON: [{platform, caption, image_prompt, hashtags}]"}]}}},
+    {"name":"Replicate Image/Video","type":"n8n-nodes-base.httpRequest","position":[680,300],"parameters":{"url":"https://api.replicate.com/v1/predictions","body":{"version":"FLUX NEON","input":{"prompt":"Neon sci-fi AI agent promo: hero screenshot + '$5k Intro Ends Soon' glow"}}}},
+    {"name":"Publer Post Swarm","type":"n8n-nodes-base.httpRequest","position":[900,300],"parameters":{"url":"https://publer.com/api/posts","body":{"accounts":[20_ACCT_IDS],"posts":[{{$json}}],"schedule":"peak_times"}}},
+    {"name":"Engage Bot","type":"n8n-nodes-base.httpRequest","position":[900,460],"parameters":{"url":"Publer Engage API","body":{"replies":"AI: 'DM for custom demo – saves bank! [Calendly]' on mentions/likes"}}},
+    {"name":"Lead Sheet","type":"n8n-nodes-base.googleSheets","position":[1120,300],"parameters":{"operation":"append","data":"leads from Stripe/Publer"}},
+    {"name":"Optimize Loop","type":"n8n-nodes-base.httpRequest","position":[1120,460],"parameters":{"url":"Groq Optimize","body":{"content":"Analyze Sheet data: Top conv posts? Kill losers, 10x winners. New variants."}}}
+  ],
+  "connections": {"Cron Trigger":{"main":[{"node":"Groq Trend Gen"}]},"Groq Trend Gen":{"main":[{"node":"Replicate Image/Video"}]},"Replicate Image/Video":{"main":[{"node":"Publer Post Swarm"}]},"Publer Post Swarm":{"main":[{"node":"Engage Bot"}]},"Engage Bot":{"main":[{"node":"Lead Sheet"}]},"Lead Sheet":{"main":[{"node":"Optimize Loop"}]}}
+}
