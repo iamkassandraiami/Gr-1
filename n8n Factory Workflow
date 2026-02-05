@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {"name":"Factory Cron","type":"n8n-nodes-base.cron","position":[240,300],"parameters":{"rule":{"interval":["everyHour"]}}},
+    {"name":"Proxy Fetch","type":"n8n-nodes-base.httpRequest","position":[460,300],"parameters":{"url":"https://api.proxyscrape.com/v2/?request=get&protocol=http&timeout=10000&country=all"}},
+    {"name":"Temp Email","type":"n8n-nodes-base.httpRequest","position":[460,460],"parameters":{"url":"https://api.tempmail.lol/generate"}},
+    {"name":"Puppeteer Creator","type":"n8n-nodes-base.executeCommand","position":[680,380],"parameters":{"command":"puppeteer.launch({headless:false,args:['--proxy-server={{$json.proxy}}']}); page.goto('twitter.com/signup'); // AI Script: Fill name/email/pass/bio='AI Empire Drops 🚀 [SITE_URL]', verify captcha human-like, add phone if needed, connect Publer API"}},
+    {"name":"Bio/Pfp Set","type":"n8n-nodes-base.httpRequest","position":[900,380],"parameters":{"url":"Replicate AI PFP","body":{"prompt":"Neon AI avatar for marketer"}}},
+    {"name":"Publer Link","type":"n8n-nodes-base.httpRequest","position":[1120,380],"parameters":{"url":"Publer API /accounts/add","body":{"creds":[{{$json.acct_id}}],"bio":"AI Agent Promo"}}},
+    {"name":"Targeted Scrape","type":"n8n-nodes-base.httpRequest","position":[680,540],"parameters":{"url":"Groq Scrape","body":{"content":"X/Reddit/Telegram search: 'need custom AI' OR 'API integration help'. Output: 50 targets with bios/queries"}}}
+  ],
+  "connections": {"Factory Cron":{"main":[{"node":"Proxy Fetch"}]},"Proxy Fetch":{"main":[{"node":"Temp Email"}]},"Temp Email":{"main":[{"node":"Puppeteer Creator"}]},"Puppeteer Creator":{"main":[{"node":"Bio/Pfp Set"}]},"Bio/Pfp Set":{"main":[{"node":"Publer Link"}]},"Publer Link":{"main":[{"node":"Targeted Scrape"}]}}
+}
